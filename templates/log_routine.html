@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<nav>
+    <a href="{{ url_for('main.index') }}">Home</a>
+    <a href="{{ url_for('main.create_routine') }}">Create a New Routine</a>
+</nav>
+<h1>Log sets for {{routine.name}}</h1>
+<form method="POST" action="{{ url_for('main.log_routine', routine_id=routine.id) }}">
+    {% for exercise in exercises %}
+        <h3>{{ exercise.name }}</h3>
+        <input type="hidden" name="exercise_id" value="{{ exercise.id }}">
+        <label for="set_reps_{{ exercise.id }}">Reps:</label>
+        <input type="number" id="set_reps_{{ exercise.id }}" name="reps_{{ exercise.id }}" required>
+        <label for="set_weight_{{ exercise.id }}">Weight:</label>
+        <input type="number" id="set_weight_{{ exercise.id }}" name="weight_{{ exercise.id }}" step="0.01" required>
+    {% endfor %}
+    <br>
+    <br>
+    <button type="submit">Log Routine</button>
+</form>
+{% endblock %}

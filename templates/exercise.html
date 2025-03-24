@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{exercise.name}}</title>
+{% endblock %}
+
+{% block body %}
+<nav>
+    <a href="/">Home</a>
+</nav>
+<h1>Exercise</h1>
+<h2>All muscles currently listed to be worked by {{exercise.name}} </h2>
+{% for muscle in exercise_muscles %}
+    <p>{{muscle.name}}</p>
+{% endfor %}
+<h2>Select the muscles worked for {{exercise.name}}</h2>
+<form method="POST" action="{{ url_for('main.view_exercise', exercise_id= exercise.id) }}">
+    <label for="muscles">Muscles</label><br>
+    {% for muscle in muscles %}
+    <input type="checkbox" name="muscles" value="{{ muscle.id }}">{{ muscle.name }}<br>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Add muscle to exercise">
+</form>
+{% endblock %}

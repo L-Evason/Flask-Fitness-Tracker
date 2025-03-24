@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<h1>Add Muscle Groups</h1>
+<nav>
+    <a href="/">Home</a>
+</nav>
+<h2>Add a Group</h2>
+<form action="/muscle_groups" method="POST">
+    <label for="name">Group Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Create</button>
+</form>
+<h2>All Muscle Groups</h2>
+<ul>
+    {% for group in groups %}
+    <li>{{group.id}}: {{group.name}}</li>
+    <a href="{{ url_for('main.add_muscle_to_group', muscle_group_id=group.id) }}">Add Muscle</a>
+    {% endfor %}
+</ul>
+{% endblock %}

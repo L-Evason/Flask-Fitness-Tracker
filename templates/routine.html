@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<nav>
+    <a href="{{ url_for('main.index') }}">Home</a>
+    <a href="{{ url_for('main.create_routine') }}">Back to Routines</a>
+</nav>
+<h1>Exercises currently in {{routine.name}}</h1>
+{% for exercise in exercises %}
+    <p>{{exercise.name}}</p>
+{% endfor %}
+<h1>Do you wish to log a {{routine.name}} session?</h1>
+<nav>
+    <a href="{{ url_for('main.log_routine', routine_id= routine.id)}}">Log routine</a>
+</nav>
+<h1>Add exercises to a {{routine.name}}</h1>
+<form method="POST" action="{{ url_for('main.view_routine', routine_id= routine.id) }}">
+    <label for="exercises">Select Exercises:</label><br>
+    {% for exercise in exercises %}
+    <input type="checkbox" name="exercises" value="{{ exercise.id }}"> {{ exercise.name }}<br>
+    {% endfor %}
+    <button type="submit">Create Routine</button>
+</form>
+{% endblock %}

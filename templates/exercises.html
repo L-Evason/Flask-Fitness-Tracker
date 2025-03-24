@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Exercises</title>
+{% endblock %}
+
+{% block body %}
+<h1>Add Exercises</h1>
+<nav>
+    <a href="/">Home</a>
+</nav>
+<h2>Create an Exercise</h2>
+<form action="/exercises" method="POST">
+    <label for="name">Exercise Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Create</button>
+</form>
+<h2>All Exercises</h2>
+<ul>
+    {% for exercise in exercises %}
+    <li>
+        {{exercise.id}}: {{exercise.name}}
+        <form action="{{ url_for('main.view_exercise', exercise_id = exercise.id) }}" method="POST" style="display: inline;">
+            <input type="hidden" name="exercise_id" value="{{ exercise.id }}">
+            <select name="muscle_id">
+                {% for muscle in muscles %}
+                    <option value="{{ muscle.id }}">{{ muscle.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add Muscle</button>
+        </form>
+        <h3>Track sets:</h3>
+        <ul>
+            {% for set in sets %}
+                {% if set.exercise_id == exercise.id %}
+                    <li>Set date: {{ set.routine_log.date }} | Set volume: {{ set.weight * set.reps }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
