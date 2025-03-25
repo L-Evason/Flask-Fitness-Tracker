@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<title>Add Exercises</title>
-{% endblock %}
+{% block title %}Flask Fitness{% endblock %}
 
 {% block body %}
+{% include 'navbar.html' %}
 <h1>Add Exercises</h1>
-<nav>
-    <a href="/">Home</a>
-</nav>
 <h2>Create an Exercise</h2>
 <form action="/exercises" method="POST">
     <label for="name">Exercise Name:</label>

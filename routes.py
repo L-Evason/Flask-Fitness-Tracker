@@ -165,4 +165,3 @@ def view_exercise(exercise_id):
     return render_template('exercise.html',
         exercise=exercise, muscles=all_muscles,
         exercise_muscles= exercise_muscles)
-

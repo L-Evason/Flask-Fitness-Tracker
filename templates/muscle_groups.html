@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 
-{% block head %}
-
-{% endblock %}
+{% block title %}Flask Fitness{% endblock %}
 
 {% block body %}
-<h1>Add Muscle Groups</h1>
-<nav>
-    <a href="/">Home</a>
-</nav>
+{% include 'navbar.html' %}
 <h2>Add a Group</h2>
 <form action="/muscle_groups" method="POST">
     <label for="name">Group Name:</label>

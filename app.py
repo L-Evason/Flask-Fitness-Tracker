@@ -18,6 +18,12 @@ def create_app():
 # create app
 app = create_app()
 
+# 404 route handler. Not in routes.py to avoid a circular reference
+@app.errorhandler(404)
+def page_not_found(error):
+    print("404 my dude")
+    return render_template('page_not_found.html'), 404
+
 with app.app_context():
     db.create_all()
 

@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<title>{{exercise.name}}</title>
-{% endblock %}
+{% block title %}Flask Fitness{% endblock %}
 
 {% block body %}
-<nav>
-    <a href="/">Home</a>
-</nav>
+{% include 'navbar.html' %}
+
 <h1>Exercise</h1>
 <h2>All muscles currently listed to be worked by {{exercise.name}} </h2>
 {% for muscle in exercise_muscles %}

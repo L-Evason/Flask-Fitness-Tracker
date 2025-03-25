@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<title>Add Routines</title>
-{% endblock %}
+{% block title %}Flask Fitness{% endblock %}
 
 {% block body %}
-<h1>Add Routines</h1>
-<nav>
-    <a href="/">Home</a>
-</nav>
+{% include 'navbar.html' %}
 <h2>Create a Routine</h2>
 <form action="/routines" method="POST">
     <label for="name">Routine Name:</label>

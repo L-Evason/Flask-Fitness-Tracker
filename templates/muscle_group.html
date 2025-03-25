@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 
-{% block head %}
-
-{% endblock %}
+{% block title %}Flask Fitness{% endblock %}
 
 {% block body %}
-<nav>
-    <a href="/">Home</a>
-</nav>
-
+{% include 'navbar.html' %}
 <h2>Add a Muscle to {{ muscle_group.name }}</h2>
 <form action="{{ url_for('main.add_muscle_to_group', muscle_group_id=muscle_group.id) }}" method="POST">
     <label for="name">Muscle Name:</label>

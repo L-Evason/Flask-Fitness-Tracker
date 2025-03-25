@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 
-{% block head %}
-
-{% endblock %}
+{% block title %}Flask Fitness{% endblock %}
 
 {% block body %}
-<nav>
-    <a href="{{ url_for('main.index') }}">Home</a>
-    <a href="{{ url_for('main.create_routine') }}">Create a New Routine</a>
-</nav>
+{% include 'navbar.html' %}
 <h1>Log sets for {{routine.name}}</h1>
 <form method="POST" action="{{ url_for('main.log_routine', routine_id=routine.id) }}">
     {% for exercise in exercises %}

@@ -50,7 +50,7 @@ class MuscleGroup(db.Model):
     def __repr__(self):
         return '<MuscleGroup %r>' % self.id
 
-# child of MuscleGroup
+# Child of MuscleGroup
 class Muscle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
