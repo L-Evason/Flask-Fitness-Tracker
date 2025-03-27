@@ -14,7 +14,11 @@
 <ul>
     {% for group in groups %}
     <li>{{group.id}}: {{group.name}}</li>
-    <a href="{{ url_for('main.add_muscle_to_group', muscle_group_id=group.id) }}">Add Muscle</a>
+    <a href="{{ url_for('main.update_or_add_muscle_to_group', muscle_group_id=group.id) }}">Add Muscle</a>
+    <br>
+    <form action="{{ url_for('main.delete_muscle_group', muscle_group_id=group.id) }}" method="POST" style="display:inline;">
+        <button type="submit" onclick="return confirm('This action will delete the muscle group and all assosiated muscles, do you wish to continiue?')">Delete</button>
+    </form>
     {% endfor %}
 </ul>
 {% endblock %}

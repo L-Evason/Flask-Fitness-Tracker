@@ -5,7 +5,7 @@
 {% block body %}
 {% include 'navbar.html' %}
 <h2>Add a Muscle to {{ muscle_group.name }}</h2>
-<form action="{{ url_for('main.add_muscle_to_group', muscle_group_id=muscle_group.id) }}" method="POST">
+<form action="{{ url_for('main.update_or_add_muscle_to_group', muscle_group_id=muscle_group.id) }}" method="POST">
     <label for="name">Muscle Name:</label>
     <input type="text" id="name" name="name" required>
     <button type="submit">Create</button>
@@ -14,7 +14,16 @@
 <h2>Existing Muscles in this Group:</h2>
 <ul>
     {% for muscle in muscles %}
-        <li>{{ muscle.id }}: {{ muscle.name }}</li>
+        <li>{{ muscle.id }}: {{ muscle.name }}
+            <form action="{{ url_for('main.update_or_add_muscle_to_group', muscle_group_id=muscle_group.id) }}" method="POST" style="display:inline;">
+                <input type="hidden" name="muscle_id" value="{{ muscle.id }}">
+                <input type="text" name="name" value="{{ muscle.name }}" required>
+                <button type="submit">Update</button>
+            </form>
+            <form action="{{ url_for('main.delete_muscle', muscle_group_id=muscle_group.id, muscle_id=muscle.id) }}" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('This action will delete this muscle. Do you wish to continue?')">Delete</button>
+            </form>
+        </li>
     {% endfor %}
 </ul>
 {% endblock %}

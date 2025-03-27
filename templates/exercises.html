@@ -15,17 +15,26 @@
 <ul>
     {% for exercise in exercises %}
     <li>
-        {{exercise.id}}: {{exercise.name}}
+        {{exercise.id}}: 
+        <form action="{{ url_for('main.exercises') }}" method="POST" style="display: inline;">
+            <input type="text" name="name" value="{{ exercise.name }}" required>
+            <input type="hidden" name="exercise_id" value="{{ exercise.id }}">
+            <button type="submit">Change name</button>
+        </form>
+        {{exercise.name}}
         <form action="{{ url_for('main.view_exercise', exercise_id = exercise.id) }}" method="POST" style="display: inline;">
             <input type="hidden" name="exercise_id" value="{{ exercise.id }}">
             <select name="muscle_id">
-                {% for muscle in muscles %}
+                {% for muscle in exercise.muscles_worked %}
                     <option value="{{ muscle.id }}">{{ muscle.name }}</option>
                 {% endfor %}
             </select>
             <button type="submit">Add Muscle</button>
         </form>
-        <h3>Track sets:</h3>
+        <form action="{{ url_for('main.delete_exercise', exercise_id=exercise.id) }}" method="POST" style="display: inline;">
+            <button type="submit" onclick="return confirm('This action will delete this exercise. Do you wish to continue?')">Delete</button>
+        </form>
+        <h3>Set tracker:</h3>
         <ul>
             {% for set in sets %}
                 {% if set.exercise_id == exercise.id %}

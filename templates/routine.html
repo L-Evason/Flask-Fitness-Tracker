@@ -3,6 +3,7 @@
 {% block title %}Flask Fitness{% endblock %}
 
 {% include 'navbar.html' %}
+{% block body %}
 <h1>Exercises currently in {{routine.name}}</h1>
 {% for exercise in exercises %}
     <p>{{exercise.name}}</p>
@@ -17,6 +18,6 @@
     {% for exercise in exercises %}
     <input type="checkbox" name="exercises" value="{{ exercise.id }}"> {{ exercise.name }}<br>
     {% endfor %}
-    <button type="submit">Create Routine</button>
+    <button type="submit">Create or Update Routine</button>
 </form>
 {% endblock %}
